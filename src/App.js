@@ -5,11 +5,13 @@ import Content from "./Content";
 import { onMessage, saveLikedFormSubmission,fetchLikedFormSubmissions } from "./service/mockServer";
 import Snackbar from "./components/snackbar";
 import toast, { Toaster } from "react-hot-toast";
+import Loader from "./components/loader";
 
 function App() {
   const [isShowSnackbar, setIsShowSnackbar] = useState(false);
   const [formData, setFormData] = useState(null);
   const [likedSubmissions,setLikedSubmissions] = useState([])
+  const [isLoading,setIsLoading] = useState(false)
 
   const handleNewFormSubmission = async (data) => {
     setIsShowSnackbar(true);
@@ -23,6 +25,7 @@ function App() {
 
   const handleSubmissionLike = async (data) => {
     try {
+      setIsLoading(true)
       resetStates()
       await saveLikedFormSubmission(data);
       setLikedSubmissions((prev)=>([...prev,data]))
@@ -30,17 +33,22 @@ function App() {
     } catch (error) {
       console.log("Error", error);
       toast.error("Unable to Like the submission");
+    }finally{
+      setIsLoading(false)
     }
   };
 
 
   const getLikedComments =async () =>{
     try{
+      setIsLoading(true)
       const response = await fetchLikedFormSubmissions()
       setLikedSubmissions(response?.formSubmissions)
     }catch(error){
       console.log(error)
       toast.error("Something went wrong while fetching the liked submissions")
+    }finally{
+      setIsLoading(false)
     }
   }
 
@@ -57,6 +65,7 @@ function App() {
 
   return (
     <>
+    {isLoading?<Loader />:null}
       <Snackbar
         open={isShowSnackbar}
         onClose={resetStates}
