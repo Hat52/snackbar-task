@@ -23,9 +23,9 @@ function App() {
 
   const handleSubmissionLike = async (data) => {
     try {
+      resetStates()
       await saveLikedFormSubmission(data);
       setLikedSubmissions((prev)=>([...prev,data]))
-      resetStates()
       toast.success("You have liked the submission");
     } catch (error) {
       console.log("Error", error);
