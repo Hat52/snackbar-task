@@ -36,7 +36,7 @@ export default function CustomSnackbar({ open, onClose,content,onLike }) {
             </Box>
             <Box display="flex" alignItems="center" gap={4}>
               <Button
-                onClick={()=>onLike(data)}
+                onClick={()=>onLike(content)}
                 style={{ color: "#81E6D9", fontWeight: 600, cursor: "pointer" }}
               >
                 LIKE
