@@ -28,10 +28,10 @@ export default function CustomSnackbar({ open, onClose,content,onLike }) {
           <Box display="flex" justifyContent="space-between" alignItems="center" width="100%" gap={8}>
             <Box>
               <Typography variant="body1" style={{ color: "#fff", fontWeight: 500 }}>
-                {content?.name || "--"}
+                {`${content?.data?.firstName ?? "-"} ${content?.data?.lastName ?? "-"}`}
               </Typography>
               <Typography variant="body2" style={{ color: "#cfcfcf" }}>
-              {content?.email || "--"}
+              {content?.data?.email || "--"}
               </Typography>
             </Box>
             <Box display="flex" alignItems="center" gap={4}>
