@@ -5,11 +5,11 @@ import {
   IconButton,
   Typography,
   Box,
-  Button
+  Button,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-export default function CustomSnackbar({ open, onClose,content,onLike }) {
+export default function CustomSnackbar({ open, onClose, content, onLike }) {
   return (
     <Snackbar
       open={open}
@@ -25,18 +25,29 @@ export default function CustomSnackbar({ open, onClose,content,onLike }) {
           minWidth: "300px",
         }}
         message={
-          <Box display="flex" justifyContent="space-between" alignItems="center" width="100%" gap={8}>
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            width="100%"
+            gap={8}
+          >
             <Box>
-              <Typography variant="body1" style={{ color: "#fff", fontWeight: 500 }}>
-                {`${content?.data?.firstName ?? "-"} ${content?.data?.lastName ?? "-"}`}
+              <Typography
+                variant="body1"
+                style={{ color: "#fff", fontWeight: 500 }}
+              >
+                {`${content?.data?.firstName ?? "-"} ${
+                  content?.data?.lastName ?? "-"
+                }`}
               </Typography>
               <Typography variant="body2" style={{ color: "#cfcfcf" }}>
-              {content?.data?.email || "--"}
+                {content?.data?.email || "--"}
               </Typography>
             </Box>
             <Box display="flex" alignItems="center" gap={4}>
               <Button
-                onClick={()=>onLike(content)}
+                onClick={() => onLike(content)}
                 style={{ color: "#81E6D9", fontWeight: 600, cursor: "pointer" }}
               >
                 LIKE
