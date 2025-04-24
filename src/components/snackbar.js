@@ -9,10 +9,10 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-export default function CustomSnackbar({ open, onClose,content }) {
+export default function CustomSnackbar({ open, onClose,content,onLike }) {
   return (
     <Snackbar
-      open={true}
+      open={open}
       anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       onClose={onClose}
     >
@@ -36,7 +36,7 @@ export default function CustomSnackbar({ open, onClose,content }) {
             </Box>
             <Box display="flex" alignItems="center" gap={4}>
               <Button
-                onClick={()=>console.log("I have been clicked")}
+                onClick={()=>onLike(data)}
                 style={{ color: "#81E6D9", fontWeight: 600, cursor: "pointer" }}
               >
                 LIKE
